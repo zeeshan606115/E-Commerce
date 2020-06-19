@@ -1,0 +1,50 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        {% for product in products %}
+            <div class="col-lg-4">
+                <img id = "img" class="thumbnail" src="{{product.imageURL}}">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong></h6>
+                    <hr>
+                    <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                    <a class="btn btn-outline-success" onclick="showModalWithImage('{{product.image}}', '{{product.name}}')">View</a>
+                    <h4 style="display: inline-block; float: right;">Rs. {{product.price|floatformat:2}}</h4>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+
+<div class="modal" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog model-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">My Image bazaar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="#!" id = "image-show" class="img-fluid" alt = "">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+
+<script>
+    function showModalWithImage(imageUrl, product_title){
+      debugger;
+        $('#image-modal').modal('show');
+        document.getElementById('exampleModalLabel').innerHTML = product_title;
+        $('#image-show').attr('src', `/static/images/${imageUrl}`);
+      }
+</script>
+
+{% endblock content %}
