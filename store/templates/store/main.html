@@ -86,8 +86,9 @@
     </ul>
      <div class="form-inline my-2 my-lg-0">
          <span id = "hello-msg">Hello, {{request.user}}</span>
-<!--	     	<a href="{% url 'login' %}"class="btn btn-warning" style="margin-right:5px;">Login</a>-->
-	     	<a href="{% url 'logout' %}"class="btn btn-warning">Logout</a>
+	     	<a href="#"class="btn btn-warning" id = "login" style="margin-right:5px;">Login</a>
+	     	<a href="#"class="btn btn-warning" id = "logout" style="margin-right:5px;">Logout</a>
+
 
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
@@ -109,6 +110,27 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script>
+function showModalWithImage(imageUrl, product_title){
+      debugger;
+        $('#image-modal').modal('show');
+        document.getElementById('exampleModalLabel').innerHTML = product_title;
+        $('#image-show').attr('src', `/static/images/${imageUrl}`);
+      }
 
+$(document).ready(function(){
+debugger;
+  $("img").load(function(){
+  if (user != 'AnonymousUser'){
+        $('#login').modal('show');
+        $('#logout').modal('hide');
+  }
+  else{
+    $('#logout').modal('show');
+    $('#login').modal('hide');
+    }
+  });
+});
+</script>
 </body>
 </html>

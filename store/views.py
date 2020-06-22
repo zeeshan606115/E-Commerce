@@ -14,49 +14,49 @@ from django.contrib import messages
 
 
 # Create your views here.
-def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('store')
-    else:
-        form = CreateUserForm()
+# def registerPage(request):
+#     if request.user.is_authenticated:
+#         return redirect('store')
+#     else:
+#         form = CreateUserForm()
+#
+#         if request.method == "POST":
+#             form = UserCreationForm(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 user = form.cleaned_data.get('username')
+#                 messages.success(request, 'Account was successfully created for ' + user)
+#                 return redirect('login')
+#         context = {'form': form}
+#
+#         return render(request, 'store/register.html', context)
+#
+#
+# def loginPage(request):
+#     if request.user.is_authenticated:
+#         return redirect('store')
+#     else:
+#         if request.method == 'POST':
+#             username = request.POST.get('username')
+#             password = request.POST.get('password')
+#
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 #return redirect('store')
+#             else:
+#                 messages.info(request, 'username or password is incorrect')
+#         context = {}
+#         return render(request, 'store/login.html', context)
+#
+#
+# def logoutUser(request):
+#     logout(request)
+#     return redirect('login')
 
-        if request.method == "POST":
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was successfully created for ' + user)
-                return redirect('login')
-        context = {'form': form}
-
-        return render(request, 'store/register.html', context)
 
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('store')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                #return redirect('store')
-            else:
-                messages.info(request, 'username or password is incorrect')
-        context = {}
-        return render(request, 'store/login.html', context)
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('login')
-
-
-
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def store(request):
     data = cartData(request)
     cartItems = data['cartItems']
@@ -66,7 +66,7 @@ def store(request):
     return render(request, 'store/store.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def cart(request):
     data = cartData(request)
     cartItems = data['cartItems']
@@ -77,7 +77,7 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def checkout(request):
     data = cartData(request)
     cartItems = data['cartItems']
@@ -89,7 +89,7 @@ def checkout(request):
     return render(request, 'store/checkout.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -116,7 +116,7 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)

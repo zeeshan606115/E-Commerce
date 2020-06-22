@@ -7,8 +7,8 @@ urlpatterns = [
     path('checkout/', views.checkout, name = "checkout"),
     path('update_item/', views.updateItem, name = "update_item"),
     path('processOrder/', views.processOrder, name = "processOrder"),
-    path('register/', views.registerPage, name = 'register'),
-    path('login/', views.loginPage, name = 'login'),
-    path('logout/', views.logoutUser, name = 'logout'),
+    # path('register/', views.registerPage, name = 'register'),
+    # path('login/', views.loginPage, name = 'login'),
+    # path('logout/', views.logoutUser, name = 'logout'),
 
 ]
